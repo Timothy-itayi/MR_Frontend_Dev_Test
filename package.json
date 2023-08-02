@@ -47,6 +47,7 @@
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.23",
     "@types/react-dom": "^18.0.7",
+    "@types/superagent": "^4.1.18",
     "babel-loader": "^8.2.2",
     "eslint": "^8.10.0",
     "eslint-plugin-import": "^2.25.4",
@@ -71,7 +72,8 @@
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "superagent": "^8.0.9"
   },
   "prettier": {
     "semi": false,
