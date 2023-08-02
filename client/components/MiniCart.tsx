@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 interface MiniCartItem {
   size: string
@@ -18,12 +18,20 @@ interface MiniCartProps {
 }
 
 const MiniCart: React.FC<MiniCartProps> = ({ miniCartItems, totalPrice }) => {
+  const [isCollapsed, setIsCollapsed] = useState(false)
+
   const getTotalItems = () => {
     return miniCartItems.reduce((total, item) => total + item.quantity, 0)
   }
 
   return (
-    <div className="mini-cart-container">
+    <div className={`mini-cart-container ${isCollapsed ? 'collapsed' : ''}`}>
+      <button
+        className="cart-toggle-button"
+        onClick={() => setIsCollapsed(!isCollapsed)}
+      >
+        {isCollapsed ? 'Expand' : 'Collapse'}
+      </button>
       <div className="cart-icon">
         <span className="cart-item-count">{getTotalItems()}</span>
       </div>
