@@ -29,6 +29,8 @@ const FetchProduct: React.FC<FetchProductProps> = ({
     } catch (error) {
       onFetchError(error as Error)
     }
+    console.log(onFetchSuccess)
+    console.log(onFetchError)
   }
 
   return null // No need to render anything in this component
