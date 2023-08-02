@@ -5,8 +5,9 @@ module.exports = {
   output: {
     path: join(__dirname, '../server/public'),
     filename: 'bundle.js',
+    publicPath: '/',
   },
-  mode: 'development',
+  mode: 'production',
   module: {
     rules: [
       {
