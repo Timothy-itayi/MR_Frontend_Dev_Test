@@ -7,6 +7,8 @@ import FetchProduct from './FetchProduct'
 interface MiniCartItem {
   size: string
   quantity: number
+  price: number
+  totalPrice: number
 }
 
 interface ProductItem {
@@ -49,11 +51,14 @@ const App: React.FC = () => {
       )
       if (existingItem) {
         existingItem.quantity++
+        existingItem.price = existingItem.quantity * product.price
         setMiniCartItems([...miniCartItems])
       } else {
         const item: MiniCartItem = {
           size: selectedSize,
           quantity: 1,
+          price: product.price,
+          totalPrice: product.price,
         }
         setMiniCartItems([...miniCartItems, item])
       }
@@ -62,7 +67,11 @@ const App: React.FC = () => {
       alert('Please select a size before adding to cart.')
     }
   }
-  console.log('Product state in App:', product)
+
+  const getTotalPrice = () => {
+    return miniCartItems.reduce((total, item) => total + item.price, 0)
+  }
+
   return (
     <div className="app-container">
       <FetchProduct
@@ -75,7 +84,7 @@ const App: React.FC = () => {
         onSizeChange={handleSizeChange}
         onAddToCart={handleAddToCart}
       />
-      <MiniCart miniCartItems={miniCartItems} />
+      <MiniCart miniCartItems={miniCartItems} totalPrice={getTotalPrice()} />
     </div>
   )
 }
