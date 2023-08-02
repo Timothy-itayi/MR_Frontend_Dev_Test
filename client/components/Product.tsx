@@ -2,9 +2,12 @@ import React from 'react'
 
 interface ProductProps {
   product: {
-    name: string
+    id: number
+    title: string
     description: string
-    sizes: string[]
+    price: number
+    imageURL: string
+    sizeOptions: { id: number; label: string }[]
   }
   selectedSize: string
   onSizeChange: (size: string) => void
@@ -17,26 +20,26 @@ const Product: React.FC<ProductProps> = ({
   onSizeChange,
   onAddToCart,
 }) => {
-  if (!product.sizes) {
-    // Product data is not available yet, show a loading message or spinner
-    return <div>Loading...</div>
-  }
-
   return (
     <div className="product-container">
-      <h1>{product.name}</h1>
+      <h1>{product.title}</h1>
       <p>{product.description}</p>
+      <img src={product.imageURL} alt={product.title} />
+
       <div className="size-options">
-        {product.sizes.map((size) => (
+        {product.sizeOptions.map((sizeOption) => (
           <button
-            key={size}
-            className={`size-option ${selectedSize === size ? 'selected' : ''}`}
-            onClick={() => onSizeChange(size)}
+            key={sizeOption.id}
+            className={`size-option ${
+              selectedSize === sizeOption.label ? 'selected' : ''
+            }`}
+            onClick={() => onSizeChange(sizeOption.label)}
           >
-            {size}
+            {sizeOption.label}
           </button>
         ))}
       </div>
+
       <button className="add-to-cart-button" onClick={onAddToCart}>
         Add to Cart
       </button>
