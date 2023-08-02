@@ -1,6 +1,7 @@
 # React Boilerplate
 
 ## Packages Included
+![Uploading Screen Shot 2023-07-25 at 3.17.26 PM.png…]()
 
 - react (webpack, babel, etc.)
 - react-router-dom
