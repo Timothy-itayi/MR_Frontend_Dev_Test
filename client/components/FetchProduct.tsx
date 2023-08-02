@@ -29,7 +29,7 @@ const FetchProduct: React.FC<FetchProductProps> = ({
         'https://3sb655pz3a.execute-api.ap-southeast-2.amazonaws.com/live/product'
       )
       const data = response.body as ProductItem
-      console.log('Fetched product data:', data) // Log the fetched data to inspect its structure
+      console.log('Fetched product data:', data)
       onFetchSuccess(data)
     } catch (error) {
       console.error('Error fetching product data:', error)
@@ -37,7 +37,7 @@ const FetchProduct: React.FC<FetchProductProps> = ({
     }
   }
 
-  return null // Since this component doesn't render anything, we return null.
+  return null
 }
 
 export default FetchProduct
