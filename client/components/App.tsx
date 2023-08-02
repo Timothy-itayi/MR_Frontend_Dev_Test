@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import '../components/index.css'
 import Product from './Product'
 import MiniCart from './MiniCart'
 import FetchProduct from './FetchProduct'
