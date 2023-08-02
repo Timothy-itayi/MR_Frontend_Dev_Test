@@ -1,10 +1,13 @@
 /* index.css */
+
+/* Global styles */
 .body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
 }
 
+/* App component */
 .app-container {
   display: flex;
   flex-direction: column;
@@ -12,14 +15,21 @@
   padding: 20px;
 }
 
+/* Product component */
 .product-container {
-  border: 1px solid #cccccc;
-  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 400px;
+  max-width: auto; /* Set the maximum width of the product container */
   margin: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+.product-image {
+  max-width: 100%; /* Set the maximum width of the image to fit within the container */
+  max-height: 200px; /* Set the maximum height of the image */
+  margin-bottom: 10px;
 }
 
 .product-container h1 {
@@ -61,19 +71,33 @@
   background-color: #000000;
 }
 
+/* MiniCart component */
 .mini-cart-container {
   position: fixed;
   top: 10px;
-  right: 10px;
+  right: 15px;
   border: 1px solid #222222;
-  padding: 10px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #f6f6f7;
-  width: 300px;
+  width: 100px;
   max-height: 400px;
   overflow-y: auto;
+}
+
+.mini-cart-container.collapsed {
+  height: 50px;
+  overflow: hidden;
+}
+.view-cart-button {
+  background-color: #c90000; /* Updated to match the add to cart button color */
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
 }
 
 .cart-icon {
@@ -108,12 +132,6 @@
   margin-bottom: 10px;
 }
 
-.product-image {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  margin-right: 10px;
-}
 
 .product-details {
   flex: 1;

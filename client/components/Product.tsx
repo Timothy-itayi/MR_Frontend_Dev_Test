@@ -34,7 +34,11 @@ const Product: React.FC<ProductProps> = ({
     <div className="product-container">
       <h1>{product.title}</h1>
       <p>{product.description}</p>
-      <img src={product.imageURL} alt={product.title} />
+      <img
+        className="product-image"
+        src={product.imageURL}
+        alt={product.title}
+      />
 
       <div className="size-options">
         {product.sizeOptions.map((sizeOption) => (
