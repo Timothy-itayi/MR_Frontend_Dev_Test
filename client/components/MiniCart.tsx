@@ -27,10 +27,10 @@ const MiniCart: React.FC<MiniCartProps> = ({ miniCartItems, totalPrice }) => {
   return (
     <div className={`mini-cart-container ${isCollapsed ? 'collapsed' : ''}`}>
       <button
-        className="cart-toggle-button"
+        className="view-cart-button"
         onClick={() => setIsCollapsed(!isCollapsed)}
       >
-        {isCollapsed ? 'Expand' : 'Collapse'}
+        {isCollapsed ? 'View Cart' : 'Hide Cart'}
       </button>
       <div className="cart-icon">
         <span className="cart-item-count">{getTotalItems()}</span>
