@@ -7,9 +7,12 @@ interface FetchProductProps {
 }
 
 interface ProductItem {
-  name: string
+  id: number
+  title: string
   description: string
-  sizes: string[]
+  price: number
+  imageURL: string
+  sizeOptions: { id: number; label: string }[]
 }
 
 const FetchProduct: React.FC<FetchProductProps> = ({
@@ -25,12 +28,13 @@ const FetchProduct: React.FC<FetchProductProps> = ({
       const response = await request.get(
         'https://3sb655pz3a.execute-api.ap-southeast-2.amazonaws.com/live/product'
       )
-      onFetchSuccess(response.body as ProductItem)
+      const data = response.body as ProductItem
+      console.log('Fetched product data:', data) // Log the fetched data to inspect its structure
+      onFetchSuccess(data)
     } catch (error) {
+      console.error('Error fetching product data:', error)
       onFetchError(error as Error)
     }
-    console.log(onFetchSuccess)
-    console.log(onFetchError)
   }
 
   return null // No need to render anything in this component

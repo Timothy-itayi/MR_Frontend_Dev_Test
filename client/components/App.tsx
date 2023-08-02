@@ -10,16 +10,22 @@ interface MiniCartItem {
 }
 
 interface ProductItem {
-  name: string
+  id: number
+  title: string
   description: string
-  sizes: string[]
+  price: number
+  imageURL: string
+  sizeOptions: { id: number; label: string }[]
 }
 
 const App: React.FC = () => {
   const [product, setProduct] = useState<ProductItem>({
-    name: '',
+    id: 0,
+    title: '',
     description: '',
-    sizes: [],
+    price: 0,
+    imageURL: '',
+    sizeOptions: [],
   })
   const [selectedSize, setSelectedSize] = useState<string>('')
   const [miniCartItems, setMiniCartItems] = useState<MiniCartItem[]>([])
@@ -56,7 +62,7 @@ const App: React.FC = () => {
       alert('Please select a size before adding to cart.')
     }
   }
-
+  console.log('Product state in App:', product)
   return (
     <div className="app-container">
       <FetchProduct
