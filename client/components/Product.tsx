@@ -20,6 +20,16 @@ const Product: React.FC<ProductProps> = ({
   onSizeChange,
   onAddToCart,
 }) => {
+  const handleSizeChange = (size: string) => {
+    console.log(`Selected size changed to: ${size}`)
+    onSizeChange(size)
+  }
+
+  const handleAddToCart = () => {
+    console.log('Adding to cart...')
+    onAddToCart()
+  }
+
   return (
     <div className="product-container">
       <h1>{product.title}</h1>
@@ -33,14 +43,14 @@ const Product: React.FC<ProductProps> = ({
             className={`size-option ${
               selectedSize === sizeOption.label ? 'selected' : ''
             }`}
-            onClick={() => onSizeChange(sizeOption.label)}
+            onClick={() => handleSizeChange(sizeOption.label)}
           >
             {sizeOption.label}
           </button>
         ))}
       </div>
 
-      <button className="add-to-cart-button" onClick={onAddToCart}>
+      <button className="add-to-cart-button" onClick={handleAddToCart}>
         Add to Cart
       </button>
     </div>

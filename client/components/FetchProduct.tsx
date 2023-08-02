@@ -1,11 +1,6 @@
 import React, { useEffect } from 'react'
 import request from 'superagent'
 
-interface FetchProductProps {
-  onFetchSuccess: (data: ProductItem) => void
-  onFetchError: (error: Error) => void
-}
-
 interface ProductItem {
   id: number
   title: string
@@ -13,6 +8,11 @@ interface ProductItem {
   price: number
   imageURL: string
   sizeOptions: { id: number; label: string }[]
+}
+
+interface FetchProductProps {
+  onFetchSuccess: (data: ProductItem) => void
+  onFetchError: (error: Error) => void
 }
 
 const FetchProduct: React.FC<FetchProductProps> = ({
@@ -37,7 +37,7 @@ const FetchProduct: React.FC<FetchProductProps> = ({
     }
   }
 
-  return null // No need to render anything in this component
+  return null // Since this component doesn't render anything, we return null.
 }
 
 export default FetchProduct

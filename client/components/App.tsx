@@ -8,9 +8,13 @@ interface MiniCartItem {
   size: string
   quantity: number
   price: number
-  totalPrice: number
+  totalPrice: number // Add the totalPrice property to each cart item
+  product: {
+    id: number
+    title: string
+    imageURL: string
+  }
 }
-
 interface ProductItem {
   id: number
   title: string
@@ -59,6 +63,11 @@ const App: React.FC = () => {
           quantity: 1,
           price: product.price,
           totalPrice: product.price,
+          product: {
+            id: 0,
+            title: '',
+            imageURL: '',
+          },
         }
         setMiniCartItems([...miniCartItems, item])
       }
