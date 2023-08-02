@@ -5,6 +5,11 @@ interface MiniCartItem {
   quantity: number
   price: number
   totalPrice: number // Add the totalPrice property to each cart item
+  product: {
+    id: number
+    title: string
+    imageURL: string
+  }
 }
 
 interface MiniCartProps {
@@ -25,8 +30,16 @@ const MiniCart: React.FC<MiniCartProps> = ({ miniCartItems, totalPrice }) => {
       <ul className="cart-items">
         {miniCartItems.map((item, index) => (
           <li key={index}>
-            {item.size} - {item.quantity} (Price: ${item.price}, Total: $
-            {item.totalPrice})
+            <div className="cart-item">
+              <img src={item.product.imageURL} alt={item.product.title} />
+              <div>
+                <p>{item.product.title}</p>
+                <p>Size: {item.size}</p>
+                <p>Quantity: {item.quantity}</p>
+                <p>Price: ${item.price}</p>
+                <p>Total: ${item.totalPrice}</p>
+              </div>
+            </div>
           </li>
         ))}
       </ul>
