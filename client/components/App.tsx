@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import '../components/index.css'
 import Product from './Product'
 import MiniCart from './MiniCart'
 import FetchProduct from './FetchProduct'
@@ -7,19 +7,27 @@ import FetchProduct from './FetchProduct'
 interface MiniCartItem {
   size: string
   quantity: number
+  price: number
+  totalPrice: number
 }
 
 interface ProductItem {
-  name: string
+  id: number
+  title: string
   description: string
-  sizes: string[]
+  price: number
+  imageURL: string
+  sizeOptions: { id: number; label: string }[]
 }
 
 const App: React.FC = () => {
   const [product, setProduct] = useState<ProductItem>({
-    name: '',
+    id: 0,
+    title: '',
     description: '',
-    sizes: [],
+    price: 0,
+    imageURL: '',
+    sizeOptions: [],
   })
   const [selectedSize, setSelectedSize] = useState<string>('')
   const [miniCartItems, setMiniCartItems] = useState<MiniCartItem[]>([])
@@ -43,11 +51,14 @@ const App: React.FC = () => {
       )
       if (existingItem) {
         existingItem.quantity++
+        existingItem.price = existingItem.quantity * product.price
         setMiniCartItems([...miniCartItems])
       } else {
         const item: MiniCartItem = {
           size: selectedSize,
           quantity: 1,
+          price: product.price,
+          totalPrice: product.price,
         }
         setMiniCartItems([...miniCartItems, item])
       }
@@ -55,6 +66,10 @@ const App: React.FC = () => {
     } else {
       alert('Please select a size before adding to cart.')
     }
+  }
+
+  const getTotalPrice = () => {
+    return miniCartItems.reduce((total, item) => total + item.price, 0)
   }
 
   return (
@@ -69,7 +84,7 @@ const App: React.FC = () => {
         onSizeChange={handleSizeChange}
         onAddToCart={handleAddToCart}
       />
-      <MiniCart miniCartItems={miniCartItems} />
+      <MiniCart miniCartItems={miniCartItems} totalPrice={getTotalPrice()} />
     </div>
   )
 }
